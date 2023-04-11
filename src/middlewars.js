@@ -151,7 +151,7 @@ async function middlewares(bot){
                             "add"
                         )
         
-                        console.log(result);
+                        
                         
                         await bot.sendMessage(messages[0].key.remoteJid, { text: 'Added' }, { quoted: messages[0] })
         
