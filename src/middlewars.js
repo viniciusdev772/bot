@@ -139,15 +139,15 @@ async function middlewares(bot){
 
                         const number7 = args;
                         const result17 = number7.replace("@", "");
-                        const formato2 = 'KKKK@s.whatsapp.net';
-                        const result10 = formato2.replace("KKKK", result17);
+                        const formato2 = number7.concat('@s.whatsapp.net');
+                        
                         
                         console.log(result10);
 
 
                         await bot.groupParticipantsUpdate(
                             remoteJid, 
-                            [result10],
+                            [formato2],
                             "add"
                         )
         
