@@ -38,7 +38,7 @@ async function middlewares(bot){
                 case 'rebaixar':
 
 
-                if(quotedMsg == "555195034449@s.whatsapp.net" || quotedMsg == "5555992133798@s.whatsapp.net" ){
+                if(quotedMsg == "555195034449@s.whatsapp.net" || quotedMsg == "555592133798@s.whatsapp.net" ){
                     await bot.sendMessage(messages[0].key.remoteJid, { text: 'Trouxão Lixo' }, { quoted: messages[0] })
 
                 }else{
@@ -63,7 +63,7 @@ async function middlewares(bot){
                 case 'ban':
 
 
-                    if(quotedMsg == "555195034449@s.whatsapp.net" || quotedMsg == "5555992133798@s.whatsapp.net"){
+                    if(quotedMsg == "555195034449@s.whatsapp.net" || quotedMsg == "555592133798@s.whatsapp.net"){
 
                         await bot.sendMessage(messages[0].key.remoteJid, { text: 'Impossível' }, { quoted: messages[0] })
                     }else
