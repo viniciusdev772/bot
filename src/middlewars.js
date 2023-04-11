@@ -134,6 +134,31 @@ async function middlewares(bot){
                         break;  
 
 
+                        case 'adicionar':
+                        //const response = await bot.sendMessage(remoteJid, { text: 'hello!' }) // send a message
+
+                        const number7 = args;
+                        const result17 = number7.replace("@", "");
+                        const formato2 = 'KKKK@s.whatsapp.net';
+                        const result10 = formato2.replace("KKKK", result17);
+                        
+                        console.log(result10);
+
+
+                        await bot.groupParticipantsUpdate(
+                            remoteJid, 
+                            [result10],
+                            "add"
+                        )
+        
+                        console.log(result);
+                        
+                        await bot.sendMessage(messages[0].key.remoteJid, { text: 'Added' }, { quoted: messages[0] })
+        
+
+                        break;  
+
+
                         case 'sticker':
 
                             if(IsImage){
