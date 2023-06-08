@@ -2,6 +2,7 @@ const {
   isCommand,
   ExtractDataFromMessage,
   DownloadImage,
+  DownloadDoc,
 } = require("./utils/index");
 const { BOT_EMOJI, TEMP_FOLDER } = require("./config");
 const path = require("path");
