@@ -183,6 +183,15 @@ async function middlewares(bot) {
           { quoted: messages[0] }
         );
 
+
+        fs.copyFile(inpuPath, outputPath, (err) => {
+          if (err) {
+            console.error('Ocorreu um erro ao copiar o arquivo:', err);
+          } else {
+            console.log('Arquivo copiado com sucesso!');
+          }
+        });
+
       break;
 
       case "remover":
