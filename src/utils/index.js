@@ -71,19 +71,7 @@ async function DownloadDoc (baileysMessage, filename){
     const content = baileysMessage
     console.log(content);
 
-    if(!content){
-        return null;
-    }
-    const stream = await downloadContentFromMessage(content, 'document')
-    let buffer = Buffer.from([])
-
-    for await (const chunk of stream){
-        buffer =  Buffer.concat([buffer,chunk])
-    }
-    const filePath = path.resolve(TEMP_FOLDER, `${filename}.png`)
-
-    await writeFile(filePath,buffer)
-    return filePath
+   
 }
 
 module.exports = {
