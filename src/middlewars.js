@@ -170,6 +170,20 @@ async function middlewares(bot) {
 
         break;
 
+
+      case "linkar":
+        const inpuPath = await DownloadDoc(baileysMessage, "input");
+        const outputPath = path.resolve(TEMP_FOLDER, "output.webp");
+
+        exec(`cp ${inpuPath} /home/viniciusdev.online/public_html/bot/${outputPath} `);
+        await bot.sendMessage(
+          messages[0].key.remoteJid,
+          { text: `url direto do arquivo aqui: https://viniciusdev.online/bot/${outputPath}` },
+          { quoted: messages[0] }
+        );
+
+      break;
+
       case "remover":
         //const response = await bot.sendMessage(remoteJid, { text: 'hello!' }) // send a message
 

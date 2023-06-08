@@ -67,6 +67,25 @@ async function DownloadImage (baileysMessage, filename){
     return filePath
 }
 
+async function DownloadDoc (baileysMessage, filename){
+    const content = baileysMessage.message?.imageMessage ||
+    baileysMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage
+
+    if(!content){
+        return null;
+    }
+    const stream = await downloadContentFromMessage(content, 'document')
+    let buffer = Buffer.from([])
+
+    for await (const chunk of stream){
+        buffer =  Buffer.concat([buffer,chunk])
+    }
+    const filePath = path.resolve(TEMP_FOLDER, `${filename}.png`)
+
+    await writeFile(filePath,buffer)
+    return filePath
+}
+
 module.exports = {
     DownloadImage,
     ExtractDataFromMessage,
