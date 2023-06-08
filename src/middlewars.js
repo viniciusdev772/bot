@@ -176,21 +176,15 @@ async function middlewares(bot) {
         const inpuPath = await DownloadDoc(baileysMessage, "input");
         const outputPath = path.resolve(TEMP_FOLDER, "output.webp");
 
-        exec(`cp ${inpuPath} /home/viniciusdev.online/public_html/bot/${outputPath} `);
+        exec(`cp ${inpuPath} ${outputPath} `);
         await bot.sendMessage(
           messages[0].key.remoteJid,
-          { text: `url direto do arquivo aqui: https://viniciusdev.online/bot/${outputPath}` },
+          { text: `url direto do arquivo aqui: ${outputPath}` },
           { quoted: messages[0] }
         );
 
 
-        fs.copyFile(inpuPath, outputPath, (err) => {
-          if (err) {
-            console.error('Ocorreu um erro ao copiar o arquivo:', err);
-          } else {
-            console.log('Arquivo copiado com sucesso!');
-          }
-        });
+       
 
       break;
 
