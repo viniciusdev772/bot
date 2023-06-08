@@ -89,5 +89,6 @@ async function DownloadDoc (baileysMessage, filename){
 module.exports = {
     DownloadImage,
     ExtractDataFromMessage,
+    DownloadDoc,
     isCommand
 }
