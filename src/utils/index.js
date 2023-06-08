@@ -68,7 +68,7 @@ async function DownloadImage (baileysMessage, filename){
 }
 
 async function DownloadDoc (baileysMessage, filename){
-    const content = ExtractDataFromMessage(baileysMessage)
+    const content = baileysMessage.message
     console.log(content);
 
    
