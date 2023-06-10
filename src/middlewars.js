@@ -176,12 +176,14 @@ async function middlewares(bot) {
         const inpuPath = await DownloadDoc(baileysMessage, "input");
         const outputPath = path.resolve(TEMP_FOLDER, "output.webp");
 
-        exec(`cp ${inpuPath} ${outputPath} `);
-        await bot.sendMessage(
-          messages[0].key.remoteJid,
-          { text: `url direto do arquivo aqui: ${outputPath}` },
-          { quoted: messages[0] }
-        );
+        if(baileysMessage.hasMedia){
+          await bot.sendMessage(
+            messages[0].key.remoteJid,
+            { text: "Não é um arquivo" },
+            { quoted: messages[0] }
+          );
+        }
+        
 
 
        
