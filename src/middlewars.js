@@ -47,6 +47,13 @@ async function middlewares(bot) {
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
         nome_do_arquivo = content23.fileName
+
+        await bot.sendMessage(
+          messages[0].key.remoteJid,
+          { text: "Seu Arquivo foi Recebido, aguarde enquanto processamos" },
+          { quoted: messages[0] }
+        );
+
         const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
         const inpuPath = await DownloadDoc(baileysMessage, nomeDoArquivoComString);
