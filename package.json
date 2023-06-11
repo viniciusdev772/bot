@@ -12,6 +12,7 @@
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@whiskeysockets/baileys": "github:WhiskeySockets/Baileys",
+    "axios": "^1.4.0",
     "qrcode-terminal": "^0.12.0"
   }
 }

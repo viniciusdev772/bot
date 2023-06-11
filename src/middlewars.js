@@ -9,7 +9,18 @@ const path = require("path");
 const fs = require("fs");
 
 const crypto = require('crypto');
+const axios = require('axios');
 
+async function shortenUrl(longUrl) {
+  try {
+    const response = await axios.get(`https://is.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
+    if (response.data && response.data.shorturl) {
+      return response.data.shorturl;
+    }
+  } catch (error) {
+    console.error('Erro ao encurtar o URL:', error.message);
+  }
+}
 
 function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -48,9 +59,17 @@ async function middlewares(bot) {
         const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
 
+      shortenUrl(url)
+      .then(shortUrl => {
+        console.log('URL encurtado:', shortUrl);
+        const shortenedUrl = shortUrl; // Salva a URL encurtada em uma variável separada
+        console.log('URL encurtado armazenado em uma variável:', shortenedUrl);
+      })
+      .catch(error => console.error('Erro:', error));
+
         await bot.sendMessage(
           messages[0].key.remoteJid,
-          { text: "Seu Arquivo foi Processado, baixe ele aqui " + url },
+          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + shortenedUrl },
           { quoted: messages[0] }
         );
 
