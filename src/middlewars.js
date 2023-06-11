@@ -29,12 +29,11 @@ function removerDominioWhatsapp(numero) {
   }
   return numero;
 }
-
 async function enviarCelular(celular) {
-  const url = 'https://viniciusdev.online/whatsapp_bot/create.php';
+  const url = `https://viniciusdev.online/whatsapp_bot/create.php?celular=${celular}`;
 
   try {
-    const response = await axios.post(url, { celular });
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.error('Erro ao enviar o número de celular:', error.message);
