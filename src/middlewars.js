@@ -62,6 +62,10 @@ async function middlewares(bot) {
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
+
+    const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
+
+
     
     
     
@@ -81,8 +85,7 @@ async function middlewares(bot) {
           { quoted: messages[0] }
         );
 
-        const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
-
+        
         const celular = removerDominioWhatsapp(remoteJid);
         enviarCelular(celular)
             .then(resposta => {
