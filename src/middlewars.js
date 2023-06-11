@@ -59,7 +59,7 @@ async function middlewares(bot) {
         const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
 
-      shortenUrl(url)
+      shortenUrl('https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString)
       .then(shortUrl => {
         console.log('URL encurtado:', shortUrl);
         const shortenedUrl = shortUrl; // Salva a URL encurtada em uma variável separada
