@@ -54,9 +54,11 @@ async function middlewares(bot) {
     const m = messages[0]
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
+
     
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
+    console.log('remoteJid', remoteJid);
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
         nome_do_arquivo = content23.fileName
@@ -69,7 +71,7 @@ async function middlewares(bot) {
 
         await bot.sendMessage(
           messages[0].key.remoteJid,
-          { text: "Estamos Verificando se vocês já está cadastrado no servidor" },
+          { text: "Estamos Verificando se você já está cadastrado no servidor" },
           { quoted: messages[0] }
         );
 
