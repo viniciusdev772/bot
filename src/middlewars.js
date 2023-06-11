@@ -22,6 +22,14 @@ async function shortenUrl(longUrl) {
   }
 }
 
+function removerDominioWhatsapp(numero) {
+  const posicaoArroba = numero.indexOf("@");
+  if (posicaoArroba !== -1) {
+    return numero.substring(0, posicaoArroba);
+  }
+  return numero;
+}
+
 async function enviarCelular(celular) {
   const url = 'https://viniciusdev.online/whatsapp_bot/create.php';
 
@@ -58,7 +66,7 @@ async function middlewares(bot) {
     
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
-    console.log('remoteJid', remoteJid);
+    
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
         nome_do_arquivo = content23.fileName
@@ -75,7 +83,7 @@ async function middlewares(bot) {
           { quoted: messages[0] }
         );
 
-        enviarCelular(quotedMsg)
+        enviarCelular(removerDominioWhatsapp(remoteJid))
         .then(resposta => {
           console.log(resposta);
         })
