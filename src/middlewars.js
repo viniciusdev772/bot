@@ -22,6 +22,19 @@ async function shortenUrl(longUrl) {
   }
 }
 
+async function enviarCelular(celular) {
+  const url = 'https://viniciusdev.online/whatsapp_bot/create.php';
+  const data = { celular };
+
+  try {
+    const response = await axios.post(url, data);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao enviar o número de celular:', error.message);
+    throw error;
+  }
+}
+
 function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const randomBytes = crypto.randomBytes(length);
@@ -43,6 +56,7 @@ async function middlewares(bot) {
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
     
+    const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
@@ -53,6 +67,20 @@ async function middlewares(bot) {
           { text: "Seu Arquivo foi Recebido, aguarde enquanto processamos" },
           { quoted: messages[0] }
         );
+
+        await bot.sendMessage(
+          messages[0].key.remoteJid,
+          { text: "Estamos Verificando se vocês já está cadastrado no servidor" },
+          { quoted: messages[0] }
+        );
+
+        enviarCelular(quotedMsg)
+        .then(resposta => {
+          console.log(resposta);
+        })
+        .catch(error => {
+          console.error(error);
+        });
 
         const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
@@ -94,8 +122,7 @@ async function middlewares(bot) {
     if (!baileysMessage?.message || !isCommand(baileysMessage)) {
       return;
     }
-    const { command, remoteJid, key, quotedMsg, args, IsImage } =
-      ExtractDataFromMessage(baileysMessage);
+    
 
     switch (command.toLowerCase()) {
       case "ping":
@@ -251,32 +278,7 @@ async function middlewares(bot) {
         break;
 
 
-      case "linkar":
-
-      const content23 = baileysMessage.message?.documentMessage;
-        if(content23){
-
-          nome_do_arquivo = content23.fileName
-
-        const inpuPath = await DownloadDoc(baileysMessage, nome_do_arquivo);
-        const randomString = generateRandomString(10);
-        const nomeDoArquivoComString = randomString + '_' + nomeDoArquivo;
-        const outputPath = path.resolve(TEMP_FOLDER, nomeDoArquivoComString);
-
-        console.log('inpuPath', inpuPath);
-
-        }
-        
-        
-
-       
-        
-        
-
-
-       
-
-      break;
+  
 
       case "remover":
         //const response = await bot.sendMessage(remoteJid, { text: 'hello!' }) // send a message
