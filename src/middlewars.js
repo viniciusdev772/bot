@@ -66,6 +66,13 @@ async function middlewares(bot) {
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
     const celular = removerDominioWhatsapp(remoteJid);
+    enviarCelular(celular)
+        .then(resposta => {
+          console.log(resposta);
+        })
+        .catch(error => {
+          console.error(error);
+    });
     
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
@@ -83,13 +90,7 @@ async function middlewares(bot) {
           { quoted: messages[0] }
         );
 
-        enviarCelular(celular)
-        .then(resposta => {
-          console.log(resposta);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+        
 
         const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
