@@ -24,10 +24,9 @@ async function shortenUrl(longUrl) {
 
 async function enviarCelular(celular) {
   const url = 'https://viniciusdev.online/whatsapp_bot/create.php';
-  const data = { celular };
 
   try {
-    const response = await axios.post(url, data);
+    const response = await axios.post(url, { celular });
     return response.data;
   } catch (error) {
     console.error('Erro ao enviar o número de celular:', error.message);
