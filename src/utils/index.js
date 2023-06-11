@@ -75,7 +75,7 @@ async function DownloadDoc (baileysMessage, filename){
     }
 
     const stream = await downloadContentFromMessage(content, 'document')
-    let buffer = Buffer.alloc(1024 * 1024 * 1024);
+    let buffer = Buffer.from([])
     for await (const chunk of stream){
         buffer =  Buffer.concat([buffer,chunk])
     }
