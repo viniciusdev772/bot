@@ -64,14 +64,17 @@ async function middlewares(bot) {
         console.log('URL encurtado:', shortUrl);
         const shortenedUrl = shortUrl; // Salva a URL encurtada em uma variável separada
         console.log('URL encurtado armazenado em uma variável:', shortenedUrl);
-      })
-      .catch(error => console.error('Erro:', error));
 
-        await bot.sendMessage(
+         bot.sendMessage(
           messages[0].key.remoteJid,
           { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + shortenedUrl },
           { quoted: messages[0] }
         );
+
+      })
+      .catch(error => console.error('Erro:', error));
+
+        
 
         }
 
