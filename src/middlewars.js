@@ -45,6 +45,15 @@ async function middlewares(bot) {
 
         console.log('url direto do arquivo', 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString);
 
+        const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
+
+
+        await bot.sendMessage(
+          messages[0].key.remoteJid,
+          { text: "Seu Arquivo foi Processado, baixe ele aqui " + url },
+          { quoted: messages[0] }
+        );
+
         }
 
     const content = baileysMessage.message?.mediaMessage;
