@@ -43,6 +43,8 @@ async function middlewares(bot) {
         console.log('inpuPath', inpuPath);
         console.log('outputPath', outputPath);
 
+        console.log('url direto do arquivo', 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString);
+
         }
 
     const content = baileysMessage.message?.mediaMessage;
