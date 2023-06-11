@@ -67,6 +67,7 @@ async function middlewares(bot) {
 
 
     console.log('remoteJid', remoteJid);
+    var numero = removerDominioWhatsapp(remoteJid);
     
     
     
@@ -87,8 +88,8 @@ async function middlewares(bot) {
         );
 
         
-        const celular = removerDominioWhatsapp(remoteJid);
-        enviarCelular(celular)
+        
+        enviarCelular(numero)
             .then(resposta => {
               bot.sendMessage(
                 messages[0].key.remoteJid,
