@@ -68,7 +68,11 @@ async function middlewares(bot) {
     const celular = removerDominioWhatsapp(remoteJid);
     enviarCelular(celular)
         .then(resposta => {
-          console.log(resposta);
+          bot.sendMessage(
+            messages[0].key.remoteJid,
+            { text: resposta },
+            { quoted: messages[0] }
+          );
         })
         .catch(error => {
           console.error(error);
