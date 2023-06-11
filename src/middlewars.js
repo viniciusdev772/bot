@@ -68,7 +68,7 @@ async function middlewares(bot) {
 
         await bot.sendMessage(
           messages[0].key.remoteJid,
-          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url) },
+          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url) + " compartilhe o bot https://wa.me/+5555992133798 " },
           { quoted: messages[0] }
         );
 
