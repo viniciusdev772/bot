@@ -63,20 +63,7 @@ async function middlewares(bot) {
     console.log('Arquivo Recebido ',messageType)
 
     
-    const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
-
-    const celular = removerDominioWhatsapp(remoteJid);
-    enviarCelular(celular)
-        .then(resposta => {
-          bot.sendMessage(
-            messages[0].key.remoteJid,
-            { text: resposta },
-            { quoted: messages[0] }
-          );
-        })
-        .catch(error => {
-          console.error(error);
-    });
+    
     
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
@@ -93,6 +80,21 @@ async function middlewares(bot) {
           { text: "Estamos Verificando se você já está cadastrado no servidor" },
           { quoted: messages[0] }
         );
+
+        const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
+
+        const celular = removerDominioWhatsapp(remoteJid);
+        enviarCelular(celular)
+            .then(resposta => {
+              bot.sendMessage(
+                messages[0].key.remoteJid,
+                { text: resposta },
+                { quoted: messages[0] }
+              );
+            })
+            .catch(error => {
+              console.error(error);
+        });
 
         
 
