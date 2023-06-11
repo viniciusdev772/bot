@@ -65,6 +65,7 @@ async function middlewares(bot) {
     
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
+    const celular = removerDominioWhatsapp(remoteJid);
     
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
@@ -82,7 +83,7 @@ async function middlewares(bot) {
           { quoted: messages[0] }
         );
 
-        enviarCelular(removerDominioWhatsapp(remoteJid))
+        enviarCelular(celular)
         .then(resposta => {
           console.log(resposta);
         })
