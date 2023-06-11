@@ -1,4 +1,4 @@
-const {default: makeWaSocket, DisconnectReason,useMultiFileAuthState } = require("@adiwajshing/baileys");
+const {default: makeWaSocket, DisconnectReason,useMultiFileAuthState } = require("@whiskeysockets/baileys");
 
 async function connect(){
     const { state, saveCreds } = await useMultiFileAuthState('./assets/auth/baileys')

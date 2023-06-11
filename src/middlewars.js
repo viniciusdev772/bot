@@ -8,10 +8,58 @@ const { BOT_EMOJI, TEMP_FOLDER } = require("./config");
 const path = require("path");
 const fs = require("fs");
 
+const crypto = require('crypto');
+
+
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const randomBytes = crypto.randomBytes(length);
+  const result = [];
+
+  for (let i = 0; i < randomBytes.length; i++) {
+    const index = randomBytes[i] % characters.length;
+    result.push(characters[index]);
+  }
+
+  return result.join('');
+}
+
 const { exec } = require("child_process");
 async function middlewares(bot) {
   bot.ev.on("messages.upsert", async ({ messages }) => {
     const baileysMessage = messages[0];
+    const m = messages[0]
+    const messageType = Object.keys (m.message)[0]
+    console.log('Arquivo Recebido ',messageType)
+    
+
+    const content23 = baileysMessage.message?.documentMessage;
+        if(content23){
+        nome_do_arquivo = content23.fileName
+        const randomString = generateRandomString(10);
+        const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
+        const inpuPath = await DownloadDoc(baileysMessage, nomeDoArquivoComString);
+        const outputPath = path.resolve(TEMP_FOLDER, nomeDoArquivoComString);
+        console.log('inpuPath', inpuPath);
+        console.log('outputPath', outputPath);
+
+        }
+
+    const content = baileysMessage.message?.mediaMessage;
+    const content2 = baileysMessage.message?.documentMessage;
+   
+    if(content2){
+      const nome_do_arquivo = content2.fileName
+      const get =  Object.keys (content2)
+      console.log('Arquivo Recebido ',get)
+      console.log('A mensagem recebida é um arquivo!');
+      console.log('Nome do arquivo:', content2.fileName);
+      console.log('Tamanho do arquivo:', content2.fileLength);
+      console.log('URl do arquivo:', content2.url);
+      console.log('MIME Type:', content2.mimetype);
+    }
+      
+
     if (!baileysMessage?.message || !isCommand(baileysMessage)) {
       return;
     }
@@ -173,16 +221,25 @@ async function middlewares(bot) {
 
 
       case "linkar":
-        const inpuPath = await DownloadDoc(baileysMessage, "input");
-        const outputPath = path.resolve(TEMP_FOLDER, "output.webp");
 
-        if(baileysMessage.hasMedia){
-          await bot.sendMessage(
-            messages[0].key.remoteJid,
-            { text: "Não é um arquivo" },
-            { quoted: messages[0] }
-          );
+      const content23 = baileysMessage.message?.documentMessage;
+        if(content23){
+
+          nome_do_arquivo = content23.fileName
+
+        const inpuPath = await DownloadDoc(baileysMessage, nome_do_arquivo);
+        const randomString = generateRandomString(10);
+        const nomeDoArquivoComString = randomString + '_' + nomeDoArquivo;
+        const outputPath = path.resolve(TEMP_FOLDER, nomeDoArquivoComString);
+
+        console.log('inpuPath', inpuPath);
+
         }
+        
+        
+
+       
+        
         
 
 

@@ -1,4 +1,4 @@
-const { downloadContentFromMessage } = require('@adiwajshing/baileys');
+const { downloadContentFromMessage } = require('@whiskeysockets/baileys');
 const {PREFIX,TEMP_FOLDER} = require('../config')
 const path = require('path')
 const fs = require('fs')
@@ -68,8 +68,23 @@ async function DownloadImage (baileysMessage, filename){
 }
 
 async function DownloadDoc (baileysMessage, filename){
-    const content = filename
+    const content = baileysMessage.message?.documentMessage;
     console.log(content);
+
+    
+
+    if(!content){
+        return null;
+    }
+
+    const stream = await downloadContentFromMessage(content, 'document')
+    let buffer = Buffer.from([])
+    for await (const chunk of stream){
+        buffer =  Buffer.concat([buffer,chunk])
+    }
+    const filePath = path.resolve(TEMP_FOLDER, filename)
+    await writeFile(filePath,buffer)
+    return filePath
 
    
 }
