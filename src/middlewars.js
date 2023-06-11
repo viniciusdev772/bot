@@ -59,20 +59,11 @@ async function middlewares(bot) {
         const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
 
-      shortenUrl('https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString)
-      .then(shortUrl => {
-        console.log('URL encurtado:', shortUrl);
-        const shortenedUrl = shortUrl; // Salva a URL encurtada em uma variável separada
-        console.log('URL encurtado armazenado em uma variável:', shortenedUrl);
-
-         bot.sendMessage(
+        await bot.sendMessage(
           messages[0].key.remoteJid,
-          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + shortenedUrl },
+          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url) },
           { quoted: messages[0] }
         );
-
-      })
-      .catch(error => console.error('Erro:', error));
 
         
 
