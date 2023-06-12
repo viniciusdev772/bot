@@ -113,17 +113,10 @@ async function middlewares(bot) {
               { text: mensagem },
               { quoted: messages[0] }
             );
-            return;
-          }
-
-        })
-        .catch(error => {
-          console.error(error);
-        });
-
-        const randomString = generateRandomString(10);
+          }else{
+            const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
-        const inpuPath = await DownloadDoc(baileysMessage, nomeDoArquivoComString);
+        const inpuPath =  DownloadDoc(baileysMessage, nomeDoArquivoComString);
         const outputPath = path.resolve(TEMP_FOLDER, nomeDoArquivoComString);
         console.log('inpuPath', inpuPath);
         console.log('outputPath', outputPath);
@@ -133,11 +126,19 @@ async function middlewares(bot) {
         const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
 
-        await bot.sendMessage(
+         bot.sendMessage(
           messages[0].key.remoteJid,
           { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url) + " compartilhe o bot https://wa.me/+5555992133798 " },
           { quoted: messages[0] }
         );
+          }
+
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+        
 
         
 
