@@ -74,21 +74,9 @@ async function middlewares(bot) {
     const content23 = baileysMessage.message?.documentMessage;
         if(content23){
         nome_do_arquivo = content23.fileName
-
-        await bot.sendMessage(
-          messages[0].key.remoteJid,
-          { text: "Seu Arquivo foi Recebido, aguarde enquanto processamos" },
-          { quoted: messages[0] }
-        );
-
-        await bot.sendMessage(
-          messages[0].key.remoteJid,
-          { text: "Estamos Verificando se você já está cadastrado no servidor" },
-          { quoted: messages[0] }
-        );
-
-        
-        
+        peso_do_arquivo = content23.fileLength
+        const lowValue = peso_do_arquivo.low;
+        console.log(lowValue);
         enviarCelular(numero)
             .then(resposta => {
               bot.sendMessage(
@@ -100,8 +88,6 @@ async function middlewares(bot) {
             .catch(error => {
               console.error(error);
         });
-
-        
 
         const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
