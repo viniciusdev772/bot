@@ -22,6 +22,18 @@ async function shortenUrl(longUrl) {
   }
 }
 
+async function consultar(celular, tamanho) {
+  const url = `https://viniciusdev.online/whatsapp_bot/consultar.php?celular=${celular}&tamanho=${tamanho}`;
+
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao consultar:', error.message);
+    throw error;
+  }
+}
+
 function removerDominioWhatsapp(numero) {
   const posicaoArroba = numero.indexOf("@");
   if (posicaoArroba !== -1) {
@@ -89,16 +101,14 @@ async function middlewares(bot) {
               console.error(error);
         });
 
-        enviarCelular(peso_do_arquivo)
-            .then(resposta => {
-              bot.sendMessage(
-                messages[0].key.remoteJid,
-                { text: resposta },
-                { quoted: messages[0] }
-              );
-            })
-            .catch(error => {
-              console.error(error);
+        consultar(numero, peso_do_arquivo)
+        .then(resposta => {
+          const { sucesso, mensagem } = resposta;
+          console.log('Sucesso:', sucesso);
+          console.log('Mensagem:', mensagem);
+        })
+        .catch(error => {
+          console.error(error);
         });
 
         const randomString = generateRandomString(10);
