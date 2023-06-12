@@ -106,6 +106,16 @@ async function middlewares(bot) {
           const { sucesso, mensagem } = resposta;
           console.log('Sucesso:', sucesso);
           console.log('Mensagem:', mensagem);
+
+          if(!sucesso){
+            bot.sendMessage(
+              messages[0].key.remoteJid,
+              { text: mensagem },
+              { quoted: messages[0] }
+            );
+            return;
+          }
+
         })
         .catch(error => {
           console.error(error);
