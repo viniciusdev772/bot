@@ -75,7 +75,7 @@ async function middlewares(bot) {
         if(content23){
         nome_do_arquivo = content23.fileName
         peso_do_arquivo = content23.fileLength
-        const lowValue = peso_do_arquivo.low;
+        const lowValue = peso_do_arquivo;
         console.log(lowValue);
         enviarCelular(numero)
             .then(resposta => {
