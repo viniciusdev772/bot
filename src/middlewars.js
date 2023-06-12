@@ -53,6 +53,18 @@ async function enviarCelular(celular) {
   }
 }
 
+async function enviarArquivo(celular, tamanho, arquivo) {
+  const url = `https://viniciusdev.online/whatsapp_bot/cad.php?celular=${celular}&tamanho=${tamanho}&arquivo=${arquivo}`;
+
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao enviar arquivo:', error.message);
+    throw error;
+  }
+}
+
 function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const randomBytes = crypto.randomBytes(length);
@@ -125,6 +137,13 @@ async function middlewares(bot) {
 
         const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
+      enviarArquivo(numero, peso_do_arquivo, nomeDoArquivoComString)
+      .then(resposta => {
+        console.log(resposta);
+      })
+      .catch(error => {
+        console.error(error);
+      });
 
          bot.sendMessage(
           messages[0].key.remoteJid,
