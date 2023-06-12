@@ -115,7 +115,7 @@ async function middlewares(bot) {
 
         consultar(numero, peso_do_arquivo)
         .then(resposta => {
-          const { sucesso, mensagem } = resposta;
+          const { sucesso, mensagem,url } = resposta;
           console.log('Sucesso:', sucesso);
           console.log('Mensagem:', mensagem);
 
