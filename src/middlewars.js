@@ -89,6 +89,18 @@ async function middlewares(bot) {
               console.error(error);
         });
 
+        enviarCelular(peso_do_arquivo)
+            .then(resposta => {
+              bot.sendMessage(
+                messages[0].key.remoteJid,
+                { text: resposta },
+                { quoted: messages[0] }
+              );
+            })
+            .catch(error => {
+              console.error(error);
+        });
+
         const randomString = generateRandomString(10);
         const nomeDoArquivoComString = randomString + '_' + nome_do_arquivo;  
         const inpuPath = await DownloadDoc(baileysMessage, nomeDoArquivoComString);
