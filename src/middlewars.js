@@ -135,22 +135,24 @@ async function middlewares(bot) {
 
         console.log('url direto do arquivo', 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString);
 
-        const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
+        //const url = 'https://viniciusdev.online/bot/assets/temp/' + nomeDoArquivoComString;
 
       enviarArquivo(numero, peso_do_arquivo, nomeDoArquivoComString)
       .then(resposta => {
         console.log(resposta);
+        const { sucesso, mensagem,url } = resposta;
+        const url1 =  url;
+        bot.sendMessage(
+          messages[0].key.remoteJid,
+          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url1) + " compartilhe o bot https://wa.me/+5555992133798 " },
+          { quoted: messages[0] }
+        );
       })
       .catch(error => {
         console.error(error);
       });
 
-         bot.sendMessage(
-          messages[0].key.remoteJid,
-          { text: "Seu Arquivo foi Processado, baixe ele aqui no link encurtado " + encodeURI(url) + " compartilhe o bot https://wa.me/+5555992133798 " },
-          { quoted: messages[0] }
-        );
-          }
+         }
 
         })
         .catch(error => {
