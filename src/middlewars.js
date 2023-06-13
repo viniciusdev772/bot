@@ -35,7 +35,7 @@ async function consultar(celular, tamanho) {
 }
 
 
-function removerDominioWhatsapp1(numero) {
+function removerDominioWhatsapp(numero) {
   const posicaoArroba = numero.indexOf("@");
   if (posicaoArroba !== -1) {
     return numero.substring(0, posicaoArroba);
@@ -43,24 +43,7 @@ function removerDominioWhatsapp1(numero) {
   return numero;
 }
 
-function removerDominioWhatsapp(numero, grupo) {
-  const posicaoArroba1 = numero.indexOf("@");
-  if (posicaoArroba1 !== -1) {
-    numero = numero.substring(0, posicaoArroba1);
-  }
-  
-  if (grupo && grupo.includes("@g.us")) {
-    return {
-      numero: numero,
-      grupo: true
-    };
-  } else {
-    return {
-      numero: numero,
-      grupo: false
-    };
-  }
-}
+
 
 // Exemplo de uso:
 
@@ -114,65 +97,28 @@ async function middlewares(bot) {
 
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
+    var numero =  "";
 
     try {
 
       if (message.key.remoteJid.endsWith('@g.us')) {
         // Verifica se a mensagem é de um grupo  
           const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
+          numero = removerDominioWhatsapp(number);
           console.log('Número de celular:', number);
-        
+          console.log('numero da conversa em grupo', numero);
         console.log('Mensagem de um grupo');
       } else {
         // Se não for um grupo, é uma conversa privada
+        numero =  message.key.remoteJid.replace('@s.whatsapp.net', '');
         console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
         console.log('Mensagem de uma conversa privada');
+        console.log('numero da conversa privada', numero);
       }
       
     } catch (error) {
       
     }
-    
-
-    const remoto = baileysMessage?.key?.remoteJid
-
-    const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
-    console.log('remoteJid', remoto);
-    console.log('quoted', numerodogrupo);
-
-
-    if(baileysMessage?.key?.remoteJid.endsWith('@g.us')){
-      const group = await bot.groupMetadata(baileysMessage.key.remoteJid);
-      const participant = group.participants.find(p => p.jid === baileysMessage.participant);
-      console.log('group', group);
-      console.log('participant', participant);
-    }
-    
-    var numero3 = "";
-
-    try {
-      numero3 = removerDominioWhatsapp1(numerodogrupo);
-      console.log('numero do grupo', numero);
-    } catch (error) {
-      console.error(error);
-    }
-
-    try {
-      if(numero3 == ""){
-        numero3 = removerDominioWhatsapp1(remoto);
-        console.log('numero do grupo 2', numero);
-      }
-    } catch (error) {
-      
-    }
-
-    console.log('numeroOBTIDO', numero3);
-    var numero = numero3;
-
-    
-    
-    
-    
     
     const content23 = baileysMessage.message?.documentMessage;
     console.log('Arquivo Recebido ',baileysMessage.message)
@@ -181,7 +127,7 @@ async function middlewares(bot) {
         peso_do_arquivo = content23.fileLength
         const lowValue = peso_do_arquivo;
         console.log(lowValue);
-        enviarCelular(numero3)
+        enviarCelular(numero)
             .then(resposta => {
               bot.sendMessage(
                 messages[0].key.remoteJid,
