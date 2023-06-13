@@ -114,6 +114,22 @@ async function middlewares(bot) {
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
 
+    for (const message of messages) {
+      if (message.key.remoteJid.endsWith('@g.us')) {
+        // Verifica se a mensagem é de um grupo
+        const group = await bot.groupMetadata(message.key.remoteJid);
+        const participant = group.participants.find(p => p.jid === message.participant);
+        if (participant) {
+          console.log('Número de celular:', participant.jid.replace('@s.whatsapp.net', ''));
+        }
+        console.log('Mensagem de um grupo');
+      } else {
+        // Se não for um grupo, é uma conversa privada
+        console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+        console.log('Mensagem de uma conversa privada');
+      }
+    }
+
     const remoto = baileysMessage?.key?.remoteJid
 
     const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
