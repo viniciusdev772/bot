@@ -121,6 +121,7 @@ async function middlewares(bot) {
         const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         numero7 = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         console.log('Número de celular:', number);
+        criarArquivoComString('file.txt', numero7);
         console.log('numero da conversa em grupo', numero7);
       console.log('Mensagem de um grupo');
     } else {
@@ -128,7 +129,7 @@ async function middlewares(bot) {
       numero7 =  message.key.remoteJid.replace('@s.whatsapp.net', '');
       console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
       const nomeArquivo = 'meuarquivo.txt';
-    criarArquivoComString(nomeArquivo, numero7);
+      criarArquivoComString(nomeArquivo, numero7);
       console.log('Mensagem de uma conversa privada');
       console.log('numero da conversa privada', numero7);
     }
