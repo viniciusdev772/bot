@@ -121,10 +121,10 @@ async function middlewares(bot) {
         // Verifica se a mensagem é de um grupo
         const group = await bot.groupMetadata(message.key.remoteJid);
         const participant = group.participants.find(p => p.jid === message.participant);
-        if (participant) {
+        
           const number = participant.jid.split('@')[0];
           console.log('Número de celular:', number);
-        }
+        
         console.log('Mensagem de um grupo');
       } else {
         // Se não for um grupo, é uma conversa privada
