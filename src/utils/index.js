@@ -19,6 +19,7 @@ function ExtractDataFromMessage(baileysMessage){
             command : '',
             args : '',
             id : '',
+            opa : opa,
             IsImage : false,
             IsFile : false,
             full : ''
@@ -37,6 +38,7 @@ function ExtractDataFromMessage(baileysMessage){
         remoteJid : baileysMessage?.key?.remoteJid,
         fullMessage,
         quotedMsg : opa,
+        opa : opa,
         command : command.replace(PREFIX, '').trim(),
         args : arg.trim(),
         key : baileysMessage?.key?.id,

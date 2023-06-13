@@ -117,15 +117,15 @@ async function middlewares(bot) {
     const messageType = Object.keys (baileysMessage.message)
     console.log('Arquivo Recebido ',messageType)
 
-    const { fullMessage, quotedMsg, command, args, key, IsImage, isFile } = ExtractDataFromMessage(baileysMessage);
+    const { fullMessage, quotedMsg, command, args, key, IsImage, isFile,opa } = ExtractDataFromMessage(baileysMessage);
 
 
     if (isGrupo) {
-      numero7 = quotedMsg
+      numero7 = opa
       const nomeArquivo = 'meuarquivo.txt';
-      const conteudoString = participant;
+      const conteudoString = opa;
 
-      console.log('numero da conversa', participant);
+      console.log('numero da conversa', opa);
     } else {
       numero7 = meunumero;
     }
