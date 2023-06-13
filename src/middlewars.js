@@ -149,6 +149,7 @@ async function middlewares(bot) {
     
     
     const content23 = baileysMessage.message?.documentMessage;
+    console.log('Arquivo Recebido ',baileysMessage.message)
         if(content23){
         nome_do_arquivo = content23.fileName
         peso_do_arquivo = content23.fileLength
