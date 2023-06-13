@@ -44,9 +44,9 @@ function removerDominioWhatsapp1(numero) {
 }
 
 function removerDominioWhatsapp(numero, grupo) {
-  const posicaoArroba = numero.indexOf("@");
-  if (posicaoArroba !== -1) {
-    numero = numero.substring(0, posicaoArroba);
+  const posicaoArroba1 = numero.indexOf("@");
+  if (posicaoArroba1 !== -1) {
+    numero = numero.substring(0, posicaoArroba1);
   }
   
   if (grupo.includes("@g.us")) {
