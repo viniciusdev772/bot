@@ -152,7 +152,7 @@ async function middlewares(bot) {
         peso_do_arquivo = content23.fileLength
         const lowValue = peso_do_arquivo;
         console.log(lowValue);
-        enviarCelular(numero)
+        enviarCelular(numero3)
             .then(resposta => {
               bot.sendMessage(
                 messages[0].key.remoteJid,
