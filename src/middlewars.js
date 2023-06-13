@@ -118,11 +118,8 @@ async function middlewares(bot) {
     try {
 
       if (message.key.remoteJid.endsWith('@g.us')) {
-        // Verifica se a mensagem é de um grupo
-        const group = await bot.groupMetadata(message.key.remoteJid);
-        const participant = group.participants.find(p => p.jid === message.participant);
-        
-          const number = participant.jid.split('@')[0];
+        // Verifica se a mensagem é de um grupo  
+          const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
           console.log('Número de celular:', number);
         
         console.log('Mensagem de um grupo');
