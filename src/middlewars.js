@@ -122,7 +122,7 @@ async function middlewares(bot) {
         numero7 = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         console.log('Número de celular:', number);
         const nomeArquivo999 = 'meuarquivo.txt';
-        criarArquivoComString(nomeArquivo999, numero7);
+        criarArquivoComString(nomeArquivo999, baileysMessage.message?.extendedTextMessage?.contextInfo?.participant);
         console.log('numero da conversa em grupo', numero7);
       console.log('Mensagem de um grupo');
     } else {
