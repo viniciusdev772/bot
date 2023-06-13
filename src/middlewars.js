@@ -120,6 +120,22 @@ async function middlewares(bot) {
       
     }
 
+
+    if (message.key.remoteJid.endsWith('@g.us')) {
+      // Verifica se a mensagem é de um grupo  
+        const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
+        numero = removerDominioWhatsapp(number);
+        console.log('Número de celular:', number);
+        console.log('numero da conversa em grupo', numero);
+      console.log('Mensagem de um grupo');
+    } else {
+      // Se não for um grupo, é uma conversa privada
+      numero =  message.key.remoteJid.replace('@s.whatsapp.net', '');
+      console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+      console.log('Mensagem de uma conversa privada');
+      console.log('numero da conversa privada', numero);
+    }
+
     console.log('numero da conversa', numero);
     
     const content23 = baileysMessage.message?.documentMessage;
