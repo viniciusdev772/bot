@@ -130,6 +130,7 @@ async function middlewares(bot) {
                 { text: resposta },
                 { quoted: messages[0] }
               );
+              console.log(numero);
             })
             .catch(error => {
               console.error(error);
