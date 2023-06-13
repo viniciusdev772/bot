@@ -113,14 +113,6 @@ async function middlewares(bot) {
     }
 
 
-    const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
-
-    
-
-    
-
-
-    
 
     console.log('numero da conversa', numero);
     
