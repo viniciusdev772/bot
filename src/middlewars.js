@@ -124,7 +124,18 @@ async function middlewares(bot) {
     console.log('remoteJid', remoto);
     console.log('quoted', numerodogrupo);
     
-    var numero = removerDominioWhatsapp1(numerodogrupo);
+    var numero = "";
+
+    try {
+      numero = removerDominioWhatsapp1(numerodogrupo);
+      console.log('numero', numero);
+    } catch (error) {
+      console.error(error);
+      numero = removerDominioWhatsapp1(remoto);
+      console.log('numero', numero);
+    }
+
+    
     
     
     
