@@ -20,12 +20,15 @@ function ExtractDataFromMessage(baileysMessage){
             args : '',
             id : '',
             IsImage : false,
+            IsFile : false,
             full : ''
         }
     }
 
     const IsImage = !!baileysMessage.message?.imageMessage ||
             !!baileysMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage
+
+    const isFile = !!baileysMessage.message?.documentMessage        
 
     const [command, ...args] = fullMessage.trim().split(' ')   
     const arg = args.reduce((acc, arg) => acc + ' ' + arg, '').trim();
@@ -38,7 +41,8 @@ function ExtractDataFromMessage(baileysMessage){
         args : arg.trim(),
         key : baileysMessage?.key?.id,
         full : textMessage,
-        IsImage
+        IsImage,
+        isFile
     }
 
 }
