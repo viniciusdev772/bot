@@ -124,24 +124,24 @@ async function middlewares(bot) {
     console.log('remoteJid', remoto);
     console.log('quoted', numerodogrupo);
     
-    var numero = "";
+    var numero3 = "";
 
     try {
-      numero = removerDominioWhatsapp1(numerodogrupo);
+      numero3 = removerDominioWhatsapp1(numerodogrupo);
       console.log('numero do grupo', numero);
     } catch (error) {
       console.error(error);
     }
 
     try {
-      if(numero == ""){
-        numero = removerDominioWhatsapp1(remoto);
+      if(numero3 == ""){
+        numero3 = removerDominioWhatsapp1(remoto);
       }
     } catch (error) {
       
     }
 
-    console.log('numeroOBTIDO', numero);
+    console.log('numeroOBTIDO', numero3);
 
     
     
