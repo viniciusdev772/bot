@@ -91,6 +91,7 @@ async function middlewares(bot) {
 
 
     console.log('remoteJid', remoteJid);
+    console.log('quoted', quotedMsg);
     var numero = removerDominioWhatsapp(baileysMessage?.key?.remoteJid);
     
     
