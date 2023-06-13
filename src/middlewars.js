@@ -113,6 +113,7 @@ async function middlewares(bot) {
     const isGrupo = message.key.remoteJid.endsWith('@g.us') === true ? true : false;
     var participant = messages[0].message?.extendedTextMessage?.contextInfo?.participant;
     const meunumero = message.key.remoteJid.replace('@s.whatsapp.net', '');
+    const grupo = message.key.remoteJid.replace('@g.us', '');
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
@@ -120,7 +121,7 @@ async function middlewares(bot) {
 
 
     if (isGrupo) {
-      numero7 = participant;
+      numero7 = message.key.remoteJid;
       const nomeArquivo = 'meuarquivo.txt';
       const conteudoString = participant;
 
