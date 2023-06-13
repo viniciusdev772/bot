@@ -131,6 +131,7 @@ async function middlewares(bot) {
     try {
       if(numero3 == ""){
         numero3 = removerDominioWhatsapp1(remoto);
+        console.log('numero do grupo 2', numero);
       }
     } catch (error) {
       
