@@ -121,9 +121,9 @@ async function middlewares(bot) {
 
     const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     console.log('remoteJid', remoteJid);
-    console.log('quoted', quotedMsg);
+    console.log('quoted', numerodogrupo);
     const remoto = baileysMessage?.key?.remoteJid
-    const numero = removerDominioWhatsapp(quotedMsg, remoto);
+    const numero = removerDominioWhatsapp(numerodogrupo, remoto);
     if(numero.grupo){
       numero = removerDominioWhatsapp1(numero.numero);
       console.log('numero', numero);
