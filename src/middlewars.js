@@ -104,26 +104,31 @@ async function middlewares(bot) {
     
 
 
-    if (message.key.remoteJid.endsWith('@g.us')) {
-      // Verifica se a mensagem é de um grupo  
-        const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
-        numero = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
-        console.log('Número de celular:', number);
-        console.log('numero da conversa em grupo', numero);
-      console.log('Mensagem de um grupo');
-    } else {
-      // Se não for um grupo, é uma conversa privada
-      numero =  message.key.remoteJid.replace('@s.whatsapp.net', '');
-      console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
-      console.log('Mensagem de uma conversa privada');
-      console.log('numero da conversa privada', numero);
-    }
+   
 
     console.log('numero da conversa', numero);
     
     const content23 = baileysMessage.message?.documentMessage;
     console.log('Arquivo Recebido ',baileysMessage.message)
         if(content23){
+
+
+            if (message.key.remoteJid.endsWith('@g.us')) {
+              // Verifica se a mensagem é de um grupo  
+                const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
+                numero = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
+                console.log('Número de celular:', number);
+                console.log('numero da conversa em grupo', numero);
+              console.log('Mensagem de um grupo');
+            } else {
+              // Se não for um grupo, é uma conversa privada
+              numero =  message.key.remoteJid.replace('@s.whatsapp.net', '');
+              console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+              console.log('Mensagem de uma conversa privada');
+              console.log('numero da conversa privada', numero);
+            }  
+
+
         nome_do_arquivo = content23.fileName
         peso_do_arquivo = content23.fileLength
         const lowValue = peso_do_arquivo;
