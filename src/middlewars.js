@@ -49,7 +49,7 @@ function removerDominioWhatsapp(numero, grupo) {
     numero = numero.substring(0, posicaoArroba1);
   }
   
-  if (grupo.includes("@g.us")) {
+  if (grupo && grupo.includes("@g.us")) {
     return {
       numero: numero,
       grupo: true
