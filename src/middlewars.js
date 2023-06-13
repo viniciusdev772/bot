@@ -113,10 +113,7 @@ async function middlewares(bot) {
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
-    const nomeArquivo = 'meuarquivo.txt';
-    const conteudoString = 'Olá, mundo!';
-
-    criarArquivoComString(nomeArquivo, conteudoString);
+    
 
 
     if (message.key.remoteJid.endsWith('@g.us')) {
@@ -130,6 +127,8 @@ async function middlewares(bot) {
       // Se não for um grupo, é uma conversa privada
       numero7 =  message.key.remoteJid.replace('@s.whatsapp.net', '');
       console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+      const nomeArquivo = 'meuarquivo.txt';
+    criarArquivoComString(nomeArquivo, numero7);
       console.log('Mensagem de uma conversa privada');
       console.log('numero da conversa privada', numero7);
     }
