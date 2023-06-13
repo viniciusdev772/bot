@@ -103,7 +103,7 @@ function generateRandomString(length) {
 
   return result.join('');
 }
-
+const nomeArquivo999 = 'meuarquivo.txt';
 const { exec } = require("child_process");
 async function middlewares(bot) {
   bot.ev.on("messages.upsert", async ({ messages }) => {
@@ -121,7 +121,6 @@ async function middlewares(bot) {
         const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         numero7 = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         console.log('Número de celular:', number);
-        const nomeArquivo999 = 'meuarquivo.txt';
         criarArquivoComString(nomeArquivo999, baileysMessage.message?.extendedTextMessage?.contextInfo?.participant);
         console.log('numero da conversa em grupo', numero7);
       console.log('Mensagem de um grupo');
