@@ -110,28 +110,23 @@ async function middlewares(bot) {
     const baileysMessage = messages[0];
     const m = messages[0]
     const message = messages[0];
+    const isGrupo = message.key.remoteJid.endsWith('@g.us') === true ? true : false;
+    const participant = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
+    const meunumero = message.key.remoteJid.replace('@s.whatsapp.net', '');
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
     
 
 
-    if (message.key.remoteJid.endsWith('@g.us')) {
-      // Verifica se a mensagem é de um grupo  
-        const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
-        numero7 = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
-        console.log('Número de celular:', number);
-        criarArquivoComString(nomeArquivo999, baileysMessage.message?.extendedTextMessage?.contextInfo?.participant);
-        console.log('numero da conversa em grupo', numero7);
-      console.log('Mensagem de um grupo');
-    } else {
-      // Se não for um grupo, é uma conversa privada
-      numero7 =  message.key.remoteJid.replace('@s.whatsapp.net', '');
-      console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+    if (isGrupo) {
+      numero7 = participant;
       const nomeArquivo = 'meuarquivo.txt';
-      criarArquivoComString(nomeArquivo, numero7);
-      console.log('Mensagem de uma conversa privada');
-      console.log('numero da conversa privada', numero7);
+      const conteudoString = participant;
+
+      criarArquivoComString(nomeArquivo, conteudoString);
+    } else {
+      numero7 = meunumero;
     }
 
 
