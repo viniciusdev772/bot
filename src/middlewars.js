@@ -123,7 +123,7 @@ async function middlewares(bot) {
 
     if(baileysMessage?.key?.remoteJid.endsWith('@g.us')){
       const group = await bot.groupMetadata(baileysMessage.key.remoteJid);
-      const participant = group.participants.find(p => p.jid === message.participant);
+      const participant = group.participants.find(p => p.jid === baileysMessage.participant);
       console.log('group', group);
       console.log('participant', participant);
     }
