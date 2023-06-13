@@ -115,9 +115,18 @@ async function middlewares(bot) {
 
 
     const remoto = baileysMessage?.key?.remoteJid
+
     const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     console.log('remoteJid', remoto);
     console.log('quoted', numerodogrupo);
+
+
+    if(baileysMessage?.key?.remoteJid.endsWith('@g.us')){
+      const group = await bot.groupMetadata(message.key.remoteJid);
+      const participant = group.participants.find(p => p.jid === message.participant);
+      console.log('group', group);
+      console.log('participant', participant);
+    }
     
     var numero3 = "";
 
