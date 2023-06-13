@@ -11,6 +11,8 @@ const fs = require("fs");
 const crypto = require('crypto');
 const axios = require('axios');
 
+const  numero = "" ;
+
 async function shortenUrl(longUrl) {
   try {
     const response = await axios.get(`https://is.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
@@ -97,7 +99,7 @@ async function middlewares(bot) {
 
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
-    var numero =  "";
+    
 
     
 
