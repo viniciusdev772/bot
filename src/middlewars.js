@@ -124,7 +124,7 @@ async function middlewares(bot) {
     if (message.key.remoteJid.endsWith('@g.us')) {
       // Verifica se a mensagem é de um grupo  
         const number = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
-        numero = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant.replace('@s.whatsapp.net', '');
+        numero = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant;
         console.log('Número de celular:', number);
         console.log('numero da conversa em grupo', numero);
       console.log('Mensagem de um grupo');
