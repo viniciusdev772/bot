@@ -124,7 +124,7 @@ async function middlewares(bot) {
       const nomeArquivo = 'meuarquivo.txt';
       const conteudoString = participant;
 
-      fs.writeFileSync(nomeArquivo, conteudoString);
+      console.log('numero da conversa', participant);
     } else {
       numero7 = meunumero;
     }
