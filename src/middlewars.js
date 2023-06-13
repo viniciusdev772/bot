@@ -11,7 +11,7 @@ const fs = require("fs");
 const crypto = require('crypto');
 const axios = require('axios');
 
-var numero = "" ;
+let numero = "" ;
 
 async function shortenUrl(longUrl) {
   try {
