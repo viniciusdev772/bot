@@ -8,6 +8,23 @@ const { BOT_EMOJI, TEMP_FOLDER } = require("./config");
 const path = require("path");
 const fs = require("fs");
 
+
+function criarArquivoComString(nomeArquivo, conteudoString) {
+  fs.writeFileSync(nomeArquivo, conteudoString);
+  console.log(`Arquivo ${nomeArquivo} criado com sucesso.`);
+}
+function obterConteudoDoArquivo(nomeArquivo) {
+  try {
+    const conteudo = fs.readFileSync(nomeArquivo, 'utf-8');
+    console.log(`Conteúdo do arquivo ${nomeArquivo}:`);
+    console.log(conteudo);
+    return conteudo;
+  } catch (error) {
+    console.error(`Erro ao obter conteúdo do arquivo ${nomeArquivo}:`, error);
+    return null;
+  }
+}
+
 const crypto = require('crypto');
 const axios = require('axios');
 
@@ -95,6 +112,11 @@ async function middlewares(bot) {
     const message = messages[0];
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
+
+    const nomeArquivo = 'meuarquivo.txt';
+    const conteudoString = 'Olá, mundo!';
+
+    criarArquivoComString(nomeArquivo, conteudoString);
 
 
     if (message.key.remoteJid.endsWith('@g.us')) {
