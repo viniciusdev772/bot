@@ -107,6 +107,7 @@ async function middlewares(bot) {
   bot.ev.on("messages.upsert", async ({ messages }) => {
     const baileysMessage = messages[0];
     const m = messages[0]
+    const message = messages;
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
@@ -116,20 +117,18 @@ async function middlewares(bot) {
 
     try {
 
-      for (const message of messages) {
-        if (message.key.remoteJid.endsWith('@g.us')) {
-          // Verifica se a mensagem é de um grupo
-          const group = await bot.groupMetadata(message.key.remoteJid);
-          const participant = group.participants.find(p => p.jid === message.participant);
-          if (participant) {
-            console.log('Número de celular:', participant.jid.replace('@s.whatsapp.net', ''));
-          }
-          console.log('Mensagem de um grupo');
-        } else {
-          // Se não for um grupo, é uma conversa privada
-          console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
-          console.log('Mensagem de uma conversa privada');
+      if (message.key.remoteJid.endsWith('@g.us')) {
+        // Verifica se a mensagem é de um grupo
+        const group = await bot.groupMetadata(message.key.remoteJid);
+        const participant = group.participants.find(p => p.jid === message.participant);
+        if (participant) {
+          console.log('Número de celular:', participant.jid.replace('@s.whatsapp.net', ''));
         }
+        console.log('Mensagem de um grupo');
+      } else {
+        // Se não for um grupo, é uma conversa privada
+        console.log('Número de celular:', message.key.remoteJid.replace('@s.whatsapp.net', ''));
+        console.log('Mensagem de uma conversa privada');
       }
       
     } catch (error) {
