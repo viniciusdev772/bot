@@ -120,7 +120,7 @@ async function middlewares(bot) {
 
 
     const remoto = baileysMessage?.key?.remoteJid
-    var numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
+    const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     console.log('remoteJid', remoto);
     console.log('quoted', numerodogrupo);
     
