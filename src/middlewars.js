@@ -114,7 +114,7 @@ async function middlewares(bot) {
     var participant = baileysMessage.message.extendedTextMessage.contextInfo.participant;
     const meunumero = message.key.remoteJid.replace('@s.whatsapp.net', '');
     const grupo = message.key.remoteJid.replace('@g.us', '');
-    const messageType = Object.keys (m.message)[0]
+    const messageType = Object.keys (baileysMessage.message.extendedTextMessage)
     console.log('Arquivo Recebido ',messageType)
 
     
