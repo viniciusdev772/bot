@@ -34,13 +34,42 @@ async function consultar(celular, tamanho) {
   }
 }
 
-function removerDominioWhatsapp(numero) {
+
+function removerDominioWhatsapp1(numero) {
   const posicaoArroba = numero.indexOf("@");
   if (posicaoArroba !== -1) {
     return numero.substring(0, posicaoArroba);
   }
   return numero;
 }
+
+function removerDominioWhatsapp(numero, grupo) {
+  const posicaoArroba = numero.indexOf("@");
+  if (posicaoArroba !== -1) {
+    numero = numero.substring(0, posicaoArroba);
+  }
+  
+  if (grupo.includes("@g.us")) {
+    return {
+      numero: numero,
+      grupo: true
+    };
+  } else {
+    return {
+      numero: numero,
+      grupo: false
+    };
+  }
+}
+
+// Exemplo de uso:
+const numero = "555195034449@s.whatsapp.net";
+const grupo = "grupo123@g.us";
+
+const resultado = removerDominioWhatsapp(numero, grupo);
+console.log("Número: " + resultado.numero);
+console.log("É um grupo: " + resultado.grupo);
+
 async function enviarCelular(celular) {
   const url = `https://viniciusdev.online/whatsapp_bot/create.php?celular=${celular}`;
 
@@ -90,9 +119,15 @@ async function middlewares(bot) {
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
 
+    const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     console.log('remoteJid', remoteJid);
     console.log('quoted', quotedMsg);
-    var numero = removerDominioWhatsapp(baileysMessage?.key?.remoteJid);
+    const remoto = baileysMessage?.key?.remoteJid
+    var numero = removerDominioWhatsapp(quotedMsg, remoto);
+    if(numero.grupo){
+      numero = removerDominioWhatsapp1(numero.numero);
+      console.log('numero', numero);
+    }
     
     
     
