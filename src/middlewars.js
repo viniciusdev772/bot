@@ -128,11 +128,11 @@ async function middlewares(bot) {
 
     try {
       numero = removerDominioWhatsapp1(numerodogrupo);
-      console.log('numero', numero);
+      console.log('numero do grupo', numero);
     } catch (error) {
       console.error(error);
       numero = removerDominioWhatsapp1(remoto);
-      console.log('numero', numero);
+      console.log('numero por remotejid', numero);
     }
 
     console.log('numeroOBTIDO', numero);
