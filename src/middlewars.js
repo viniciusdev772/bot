@@ -135,6 +135,8 @@ async function middlewares(bot) {
       console.log('numero', numero);
     }
 
+    console.log('numeroOBTIDO', numero);
+
     
     
     
