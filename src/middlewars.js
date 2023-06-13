@@ -107,7 +107,7 @@ async function middlewares(bot) {
   bot.ev.on("messages.upsert", async ({ messages }) => {
     const baileysMessage = messages[0];
     const m = messages[0]
-    const message = messages;
+    const message = messages[0];
     const messageType = Object.keys (m.message)[0]
     console.log('Arquivo Recebido ',messageType)
 
