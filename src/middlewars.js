@@ -134,7 +134,7 @@ async function middlewares(bot) {
     }
 
     try {
-      if(!numero == ""){
+      if(numero == ""){
         numero = removerDominioWhatsapp1(remoto);
       }
     } catch (error) {
