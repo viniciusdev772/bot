@@ -8,8 +8,24 @@ function ExtractDataFromMessage(baileysMessage){
     const extendedTextMessage  = baileysMessage.message?.extendedTextMessage?.text
     const opa  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     const imageTextMessage =  baileysMessage.message?.imageMessage?.caption
+    const isFile = !!baileysMessage.message?.documentMessage   
 
     const fullMessage = textMessage || extendedTextMessage || imageTextMessage
+
+    if(isFile){
+        return {
+            remoteJid : '',
+            fullMessage : '',
+            quotedMsg : '',
+            command : '',
+            args : '',
+            id : '',
+            opa : opa,
+            IsImage : false,
+            IsFile : false,
+            full : ''
+        }
+    }
 
     if(!fullMessage){
         return {
@@ -26,10 +42,14 @@ function ExtractDataFromMessage(baileysMessage){
         }
     }
 
+    
+
     const IsImage = !!baileysMessage.message?.imageMessage ||
             !!baileysMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage
 
-    const isFile = !!baileysMessage.message?.documentMessage        
+    
+    
+    
 
     const [command, ...args] = fullMessage.trim().split(' ')   
     const arg = args.reduce((acc, arg) => acc + ' ' + arg, '').trim();
