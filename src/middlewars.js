@@ -131,8 +131,14 @@ async function middlewares(bot) {
       console.log('numero do grupo', numero);
     } catch (error) {
       console.error(error);
-      numero = removerDominioWhatsapp1(remoto);
-      console.log('numero por remotejid', numero);
+    }
+
+    try {
+      if(!numero == ""){
+        numero = removerDominioWhatsapp1(remoto);
+      }
+    } catch (error) {
+      
     }
 
     console.log('numeroOBTIDO', numero);
