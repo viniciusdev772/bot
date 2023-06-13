@@ -63,12 +63,7 @@ function removerDominioWhatsapp(numero, grupo) {
 }
 
 // Exemplo de uso:
-const numero = "555195034449@s.whatsapp.net";
-const grupo = "grupo123@g.us";
 
-const resultado = removerDominioWhatsapp(numero, grupo);
-console.log("Número: " + resultado.numero);
-console.log("É um grupo: " + resultado.grupo);
 
 async function enviarCelular(celular) {
   const url = `https://viniciusdev.online/whatsapp_bot/create.php?celular=${celular}`;
