@@ -122,7 +122,8 @@ async function middlewares(bot) {
         const group = await bot.groupMetadata(message.key.remoteJid);
         const participant = group.participants.find(p => p.jid === message.participant);
         if (participant) {
-          console.log('Número de celular:', participant.jid.replace('@s.whatsapp.net', ''));
+          const number = participant.jid.split('@')[0];
+          console.log('Número de celular:', number);
         }
         console.log('Mensagem de um grupo');
       } else {
