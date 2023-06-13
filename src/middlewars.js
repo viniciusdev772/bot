@@ -119,7 +119,7 @@ async function middlewares(bot) {
     const { command, remoteJid, key, quotedMsg, args, IsImage } = ExtractDataFromMessage(baileysMessage);
 
 
-    const numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
+    var numerodogrupo  = baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     console.log('remoteJid', remoteJid);
     console.log('quoted', numerodogrupo);
     const remoto = baileysMessage?.key?.remoteJid
