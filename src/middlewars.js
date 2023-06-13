@@ -114,7 +114,7 @@ async function middlewares(bot) {
 
 
 
-    console.log('numero da conversa', numero);
+    console.log('numero da conversa', numero7);
     
     const content23 = baileysMessage.message?.documentMessage;
     console.log('Arquivo Recebido ',baileysMessage.message)
