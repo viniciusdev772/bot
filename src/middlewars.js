@@ -137,6 +137,7 @@ async function middlewares(bot) {
     }
 
     console.log('numeroOBTIDO', numero3);
+    var numero = numero3;
 
     
     
