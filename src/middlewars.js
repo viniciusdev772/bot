@@ -137,7 +137,14 @@ async function middlewares(bot) {
     const content23 = baileysMessage.message?.documentMessage;
     console.log('Arquivo Recebido ',baileysMessage.message)
         if(content23){
-        const numero = numero7;  
+          const numero = "";
+        if(isGrupo){
+          numero = opa; 
+
+        }else{
+          numero = meunumero;
+        }  
+         
         nome_do_arquivo = content23.fileName
         peso_do_arquivo = content23.fileLength
         const lowValue = peso_do_arquivo;
