@@ -113,7 +113,7 @@ async function middlewares(bot) {
     const isGrupo = message.key.remoteJid.endsWith('@g.us') === true ? true : false;
     var participant =baileysMessage.message?.extendedTextMessage?.contextInfo?.participant
     const meunumero = message.key.remoteJid.replace('@s.whatsapp.net', '');
-    const grupo = message.key.remoteJid.replace('@g.us', '');
+    const grupo = message.key.remoteJid;
     const messageType = Object.keys (baileysMessage.message)
     console.log('Arquivo Recebido ',messageType)
 
@@ -124,7 +124,6 @@ async function middlewares(bot) {
       numero7 = opa
       const nomeArquivo = 'meuarquivo.txt';
       const conteudoString = opa;
-
       console.log('numero da conversa', opa);
     } else {
       numero7 = meunumero;
@@ -139,7 +138,7 @@ async function middlewares(bot) {
         if(content23){
           var numero = "";
         if(isGrupo){
-          numero = opa; 
+          numero = grupo; 
 
         }else{
           numero = meunumero;
