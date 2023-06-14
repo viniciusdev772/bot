@@ -137,7 +137,7 @@ async function middlewares(bot) {
     const content23 = baileysMessage.message?.documentMessage;
     console.log('Arquivo Recebido ',baileysMessage.message)
         if(content23){
-          const numero = "";
+          var numero = "";
         if(isGrupo){
           numero = opa; 
 
